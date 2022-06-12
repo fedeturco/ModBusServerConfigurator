@@ -1,0 +1,116 @@
+{
+  "modBus": {
+    "debug": true,
+    "assignIp": true,
+    "TCP": [
+      {
+        "enable": true,
+        "label": "Test",
+        "notes": null,
+        "ip_address": "192.168.1.86",
+        "port": 502,
+        "slaves": [
+          "PoweMeter 1",
+          "PLC Demo"
+        ]
+      }
+    ],
+    "RTU": [],
+    "profiles": [
+      {
+        "slave_id": 0,
+        "label": "PoweMeter 1",
+        "notes": "",
+        "di": {
+          "len": 120,
+          "data": []
+        },
+        "co": {
+          "len": 120,
+          "data": []
+        },
+        "ir": {
+          "len": 120,
+          "data": []
+        },
+        "hr": {
+          "len": 120,
+          "data": [
+            {
+              "reg": "0",
+              "value": 2305,
+              "label": "Tensione fase 1"
+            },
+            {
+              "reg": "1",
+              "value": 2306,
+              "label": "Tensione fase 2"
+            },
+            {
+              "reg": "2",
+              "value": 2295,
+              "label": "Tensione fase 3"
+            },
+            {
+              "reg": "3",
+              "value": 134,
+              "label": "Potenza fase 1"
+            },
+            {
+              "reg": "4",
+              "value": 136,
+              "label": "Potenza fase 2"
+            },
+            {
+              "reg": "5",
+              "value": 141,
+              "label": "Potenza fase 3"
+            }
+          ]
+        }
+      },
+      {
+        "slave_id": 0,
+        "label": "PLC Demo",
+        "notes": "",
+        "di": {
+          "len": 120,
+          "data": []
+        },
+        "co": {
+          "len": 120,
+          "data": []
+        },
+        "ir": {
+          "len": 120,
+          "data": [
+            {
+              "reg": "0",
+              "value": 0,
+              "label": "Variable 1"
+            },
+            {
+              "reg": "1",
+              "value": 1,
+              "label": "Variable 2"
+            },
+            {
+              "reg": "2",
+              "value": 2,
+              "label": "Variable 3"
+            },
+            {
+              "reg": "3",
+              "value": 3,
+              "label": "Variable 4"
+            }
+          ]
+        },
+        "hr": {
+          "len": 120,
+          "data": []
+        }
+      }
+    ]
+  }
+}

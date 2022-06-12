@@ -1,0 +1,25 @@
+﻿{
+	"toSave": {
+		"textBoxes": {
+			"TextBoxAddress": "",
+			"TextBoxPort": "",
+			"TextBoxUsername": "",
+			"TextBoxPassword": "",
+			"TextBoxManualCommand": "",
+			"TextBoxTerminalRows": "",
+			"TextBoxOldPathImportExportConfig": "",
+			"TextBoxOldPathImportExportProfile": "",
+			"TextBoxTimeoutPing": ""
+		},
+		"checkBoxes": {
+			"CheckBoxDisableAutoscroll": "",
+			"CheckBoxDisableRichTextBox": "",
+			"CheckBoxSubscribeLog": "",
+			"CheckBoxOpenSeparateWindow": ""
+		},
+		"radioButtons": {
+			"RadioButtonWindows": "",
+			"RadioButtonRaspberry": ""
+		}
+	}
+}

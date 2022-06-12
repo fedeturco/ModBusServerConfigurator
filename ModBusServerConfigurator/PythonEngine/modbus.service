@@ -1,0 +1,24 @@
+﻿[Unit]
+Description=Server DALI
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=30
+User=pi
+WorkingDirectory=/home/pi/ModBusServer
+ExecStart=sudo python3 -u /home/pi/ModBusServer/modbusServer.py
+
+StandardOutput=append:/var/log/modbus.log
+StandardError=append:/var/log/modbus.log
+
+#StandardOutput=append:/dev/null
+#StandardError=append:/dev/null
+
+[Install]
+WantedBy=multi-user.target
+
+# Aggiunta servizio a sistema
+#sudo ln -s /home/pi/ModBusServer/modbus.service /etc/systemd/system/modbus.service
