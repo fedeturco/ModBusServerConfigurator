@@ -117,6 +117,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="LinuxInstaller\wlan0" />
     <None Include="LinuxInstaller\dnsmasq.conf" />
     <None Include="LinuxInstaller\hostapd.conf" />
     <None Include="LinuxInstaller\installer.sh" />

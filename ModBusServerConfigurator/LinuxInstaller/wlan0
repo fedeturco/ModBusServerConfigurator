@@ -1,0 +1,9 @@
+#/etc/network/interfaces.d/wlan0
+
+# ------------------------
+# ------ WIFI WLAN0 ------
+# ------------------------
+auto wlan0
+iface wlan0 inet static
+address 10.0.0.1
+netmask 255.255.255.0
