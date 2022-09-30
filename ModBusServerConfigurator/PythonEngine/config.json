@@ -18,7 +18,7 @@
     "RTU": [],
     "profiles": [
       {
-        "slave_id": 0,
+        "slave_id": [ 0 ],
         "label": "PoweMeter 1",
         "notes": "",
         "di": {
@@ -70,7 +70,7 @@
         }
       },
       {
-        "slave_id": 0,
+        "slave_id": [ 0 ],
         "label": "PLC Demo",
         "notes": "",
         "di": {

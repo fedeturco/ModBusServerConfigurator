@@ -238,92 +238,93 @@ if("modBus" in config):
             actualConfig += "\n"
 
             for profile in modbusHead["slaves"]:
+                for slave_ids in profiles[profile]["slave_id"]:
 
-                currTcp = {}
-                currTcp["slave_id"] = profiles[profile]["slave_id"]
+                    currTcp = {}
+                    currTcp["slave_id"] = profiles[profile]["slave_id"]
 
-                print("")
-                print("ModBus TCP slave [" + profile + "]")
-                print("")
-                print("Slave ID: " + str(currTcp["slave_id"]))
-                print("")
+                    print("")
+                    print("ModBus TCP slave [" + profile + "]")
+                    print("")
+                    print("Slave ID: " + str(currTcp["slave_id"]))
+                    print("")
                 
-                actualConfig += "\n"
-                actualConfig += "ModBus TCP slave [" + profile + "]"
-                actualConfig += "\n"
-                actualConfig += "\n"
-                actualConfig += "Slave ID: " + str(currTcp["slave_id"])
-                actualConfig += "\n"
-                actualConfig += "\n"
+                    actualConfig += "\n"
+                    actualConfig += "ModBus TCP slave [" + profile + "]"
+                    actualConfig += "\n"
+                    actualConfig += "\n"
+                    actualConfig += "Slave ID: " + str(currTcp["slave_id"])
+                    actualConfig += "\n"
+                    actualConfig += "\n"
 
 
-                # Carico oggetti inputs
-                currTcp["list_di"] = [0] * profiles[profile]["di"]["len"]
+                    # Carico oggetti inputs
+                    currTcp["list_di"] = [0] * profiles[profile]["di"]["len"]
 
-                for item in profiles[profile]["di"]["data"]:
+                    for item in profiles[profile]["di"]["data"]:
 
-                    if("label" in item):
-                        print("Digital input: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
-                        actualConfig += ("Digital input: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
-                        actualConfig += "\n"
-                    else:
-                        print("Digital input: %6s      value: %5s" % (item["reg"], item["value"]))
-                        actualConfig += ("Digital input: %6s      value: %5s" % (item["reg"], item["value"]))
-                        actualConfig += "\n"
+                        if("label" in item):
+                            print("Digital input: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
+                            actualConfig += ("Digital input: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
+                            actualConfig += "\n"
+                        else:
+                            print("Digital input: %6s      value: %5s" % (item["reg"], item["value"]))
+                            actualConfig += ("Digital input: %6s      value: %5s" % (item["reg"], item["value"]))
+                            actualConfig += "\n"
 
-                    currTcp["list_di"][int(item["reg"]) + offset] = item["value"]
+                        currTcp["list_di"][int(item["reg"]) + offset] = item["value"]
 
-                # Carico oggetti coils
-                currTcp["list_co"] = [0] * profiles[profile]["co"]["len"]
+                    # Carico oggetti coils
+                    currTcp["list_co"] = [0] * profiles[profile]["co"]["len"]
 
-                for item in profiles[profile]["co"]["data"]:
+                    for item in profiles[profile]["co"]["data"]:
 
-                    if("label" in item):
-                        print("Coil: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
-                        actualConfig += ("Coil: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
-                        actualConfig += "\n"
-                    else:
-                        print("Coil: %6s      value: %5s" % (item["reg"], item["value"]))
-                        actualConfig += ("Coil: %6s      value: %5s" % (item["reg"], item["value"]))
-                        actualConfig += "\n"
+                        if("label" in item):
+                            print("Coil: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
+                            actualConfig += ("Coil: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
+                            actualConfig += "\n"
+                        else:
+                            print("Coil: %6s      value: %5s" % (item["reg"], item["value"]))
+                            actualConfig += ("Coil: %6s      value: %5s" % (item["reg"], item["value"]))
+                            actualConfig += "\n"
 
-                    currTcp["list_co"][int(item["reg"]) + offset] = item["value"]
+                        currTcp["list_co"][int(item["reg"]) + offset] = item["value"]
 
-                # Carico oggetti holdings
-                currTcp["list_hr"] = [0] * profiles[profile]["hr"]["len"]
+                    # Carico oggetti holdings
+                    currTcp["list_hr"] = [0] * profiles[profile]["hr"]["len"]
 
-                for item in profiles[profile]["hr"]["data"]:
+                    for item in profiles[profile]["hr"]["data"]:
                     
-                    if("label" in item):
-                        print("Holding reg: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
-                        actualConfig += ("Holding reg: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
-                        actualConfig += "\n"
-                    else:
-                        print("Holding reg: %6s      value: %5s" % (item, item["value"]))
-                        actualConfig += ("Holding reg: %6s      value: %5s" % (item["reg"], item["value"]))
-                        actualConfig += "\n"
+                        if("label" in item):
+                            print("Holding reg: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
+                            actualConfig += ("Holding reg: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
+                            actualConfig += "\n"
+                        else:
+                            print("Holding reg: %6s      value: %5s" % (item, item["value"]))
+                            actualConfig += ("Holding reg: %6s      value: %5s" % (item["reg"], item["value"]))
+                            actualConfig += "\n"
                         
-                    currTcp["list_hr"][int(item["reg"]) + offset] = item["value"]
+                        currTcp["list_hr"][int(item["reg"]) + offset] = item["value"]
 
-                # Carico oggetti input regs
-                currTcp["list_ir"] = [0] * profiles[profile]["ir"]["len"]
+                    # Carico oggetti input regs
+                    currTcp["list_ir"] = [0] * profiles[profile]["ir"]["len"]
 
-                for item in profiles[profile]["ir"]["data"]:
+                    for item in profiles[profile]["ir"]["data"]:
                     
-                    if("label" in item):
-                        print("Input reg: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
-                        actualConfig += ("Input reg: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
-                        actualConfig += "\n"
-                    else:
-                        print("Input reg: %6s      value: %5s" % (item["reg"], item["value"]))
-                        actualConfig += ("Input reg: %6s      value: %5s" % (item["reg"], item["value"]))
-                        actualConfig += "\n"
+                        if("label" in item):
+                            print("Input reg: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
+                            actualConfig += ("Input reg: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
+                            actualConfig += "\n"
+                        else:
+                            print("Input reg: %6s      value: %5s" % (item["reg"], item["value"]))
+                            actualConfig += ("Input reg: %6s      value: %5s" % (item["reg"], item["value"]))
+                            actualConfig += "\n"
 
-                    currTcp["list_ir"][int(item["reg"]) + offset] = item["value"]
+                        currTcp["list_ir"][int(item["reg"]) + offset] = item["value"]
 
-                modbusOBJ["slaves"].append(currTcp) 
+                    modbusOBJ["slaves"].append(currTcp) 
 
-            modbusHeadList["TCP"].append(modbusOBJ)
+                modbusHeadList["TCP"].append(modbusOBJ)
 
         # debug
         #print(currTcp)
@@ -377,92 +378,93 @@ if("modBus" in config):
             actualConfig += "\n"
 
             for profile in modbusHead["slaves"]:
+                for slave_ids in profiles[profile]["slave_id"]:
 
-                currRtu = {}
-                currRtu["slave_id"] = profiles[profile]["slave_id"]
+                    currRtu = {}
+                    currRtu["slave_id"] = slave_ids
 
-                print("")
-                print("ModBus RTU slave [" + profile + "]")
-                print("")
-                print("Slave ID: " + str(currRtu["slave_id"]))
-                print("")
+                    print("")
+                    print("ModBus RTU slave [" + profile + "]")
+                    print("")
+                    print("Slave ID: " + str(currRtu["slave_id"]))
+                    print("")
 
-                actualConfig += "\n"
-                actualConfig += ("ModBus RTU slave [" + profile + "]")
-                actualConfig += "\n"
-                actualConfig += "\n"
-                actualConfig += ("Slave ID: " + str(currRtu["slave_id"]))
-                actualConfig += "\n"
-                actualConfig += "\n"
+                    actualConfig += "\n"
+                    actualConfig += ("ModBus RTU slave [" + profile + "]")
+                    actualConfig += "\n"
+                    actualConfig += "\n"
+                    actualConfig += ("Slave ID: " + str(currRtu["slave_id"]))
+                    actualConfig += "\n"
+                    actualConfig += "\n"
 
 
-                # Carico oggetti inputs
-                currRtu["list_di"] = [0] * profiles[profile]["di"]["len"]
+                    # Carico oggetti inputs
+                    currRtu["list_di"] = [0] * profiles[profile]["di"]["len"]
 
-                for item in profiles[profile]["di"]["data"]:
+                    for item in profiles[profile]["di"]["data"]:
 
-                    if("label" in item):
-                        print("Digital input: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
-                        actualConfig += ("Digital input: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
-                        actualConfig += "\n"
-                    else:
-                        print("Digital input: %6s      value: %5s" % (item["reg"], item["value"]))
-                        actualConfig += ("Digital input: %6s      value: %5s" % (item["reg"], item["value"]))
-                        actualConfig += "\n"
+                        if("label" in item):
+                            print("Digital input: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
+                            actualConfig += ("Digital input: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
+                            actualConfig += "\n"
+                        else:
+                            print("Digital input: %6s      value: %5s" % (item["reg"], item["value"]))
+                            actualConfig += ("Digital input: %6s      value: %5s" % (item["reg"], item["value"]))
+                            actualConfig += "\n"
 
-                    currRtu["list_di"][int(item["reg"]) + offset] = item["value"]
+                        currRtu["list_di"][int(item["reg"]) + offset] = item["value"]
 
-                # Carico oggetti coils
-                currRtu["list_co"] = [0] * profiles[profile]["co"]["len"]
+                    # Carico oggetti coils
+                    currRtu["list_co"] = [0] * profiles[profile]["co"]["len"]
 
-                for item in profiles[profile]["co"]["data"]:
+                    for item in profiles[profile]["co"]["data"]:
 
-                    if("label" in item):
-                        print("Coil: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
-                        actualConfig += ("Coil: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
-                        actualConfig += "\n"
-                    else:
-                        print("Coil: %6s      value: %5s" % (item["reg"], item["value"]))
-                        actualConfig += ("Coil: %6s      value: %5s" % (item["reg"], item["value"]))
-                        actualConfig += "\n"
+                        if("label" in item):
+                            print("Coil: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
+                            actualConfig += ("Coil: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
+                            actualConfig += "\n"
+                        else:
+                            print("Coil: %6s      value: %5s" % (item["reg"], item["value"]))
+                            actualConfig += ("Coil: %6s      value: %5s" % (item["reg"], item["value"]))
+                            actualConfig += "\n"
 
-                    currRtu["list_co"][int(item["reg"]) + offset] = item["value"]
+                        currRtu["list_co"][int(item["reg"]) + offset] = item["value"]
 
-                # Carico oggetti holdings
-                currRtu["list_hr"] = [0] * profiles[profile]["hr"]["len"]
+                    # Carico oggetti holdings
+                    currRtu["list_hr"] = [0] * profiles[profile]["hr"]["len"]
 
-                for item in profiles[profile]["hr"]["data"]:
+                    for item in profiles[profile]["hr"]["data"]:
                     
-                    if("label" in item):
-                        print("Holding reg: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
-                        actualConfig += ("Holding reg: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
-                        actualConfig += "\n"
-                    else:
-                        print("Holding reg: %6s      value: %5s" % (item["reg"], item["value"]))
-                        actualConfig += ("Holding reg: %6s      value: %5s" % (item["reg"], item["value"]))
-                        actualConfig += "\n"
+                        if("label" in item):
+                            print("Holding reg: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
+                            actualConfig += ("Holding reg: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
+                            actualConfig += "\n"
+                        else:
+                            print("Holding reg: %6s      value: %5s" % (item["reg"], item["value"]))
+                            actualConfig += ("Holding reg: %6s      value: %5s" % (item["reg"], item["value"]))
+                            actualConfig += "\n"
                         
-                    currRtu["list_hr"][int(item["reg"]) + offset] = item["value"]
+                        currRtu["list_hr"][int(item["reg"]) + offset] = item["value"]
 
-                # Carico oggetti input regs
-                currRtu["list_ir"] = [0] * profiles[profile]["ir"]["len"]
+                    # Carico oggetti input regs
+                    currRtu["list_ir"] = [0] * profiles[profile]["ir"]["len"]
 
-                for item in profiles[profile]["ir"]["data"]:
+                    for item in profiles[profile]["ir"]["data"]:
                     
-                    if("label" in item):
-                        print("Input reg: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
-                        actualConfig += ("Input reg: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
-                        actualConfig += "\n"
-                    else:
-                        print("Input reg: %6s      value: %5s" % (item["reg"], item["value"]))
-                        actualConfig += ("Input reg: %6s      value: %5s" % (item["reg"], item["value"]))
-                        actualConfig += "\n"
+                        if("label" in item):
+                            print("Input reg: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
+                            actualConfig += ("Input reg: %6s      value: %5s      label: %s" % (item["reg"], item["value"], item["label"]))
+                            actualConfig += "\n"
+                        else:
+                            print("Input reg: %6s      value: %5s" % (item["reg"], item["value"]))
+                            actualConfig += ("Input reg: %6s      value: %5s" % (item["reg"], item["value"]))
+                            actualConfig += "\n"
 
-                    currRtu["list_ir"][int(item["reg"]) + offset] = item["value"]
+                        currRtu["list_ir"][int(item["reg"]) + offset] = item["value"]
 
-                modbusOBJ["slaves"].append(currRtu) 
+                    modbusOBJ["slaves"].append(currRtu) 
 
-            modbusHeadList["RTU"].append(modbusOBJ)
+                modbusHeadList["RTU"].append(modbusOBJ)
 
 # ----------------------------------------------------------------------------------------------------
 

@@ -478,7 +478,7 @@
                     <Label Content="Profilo slave:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                     <ComboBox x:Name="ComboBoxProfiles" HorizontalAlignment="Left" Margin="125,10,0,0" VerticalAlignment="Top" Width="299" SelectionChanged="ComboBoxProfiles_SelectionChanged"/>
                     <Button x:Name="ButtonNewProfile" Content="Nuovo profilo" HorizontalAlignment="Left" Margin="429,10,0,0" VerticalAlignment="Top" Width="95" Height="22" Click="ButtonNewProfile_Click"/>
-                    <TextBox x:Name="TextBoxDeviceId" HorizontalAlignment="Right" Height="23" Margin="0,36,13,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" TextChanged="TextBoxDeviceId_TextChanged"/>
+                    <TextBox x:Name="TextBoxDeviceId" HorizontalAlignment="Right" Height="23" Margin="0,36,13,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" TextChanged="TextBoxDeviceId_TextChanged" ToolTip="Insert multiple IDs separated by commas"/>
                     <Label Content="ID ModBus Slave:" HorizontalAlignment="Right" Margin="0,8,51,0" VerticalAlignment="Top"/>
                     <Button x:Name="ButtonDeleteProfile" Content="Elimina profilo" HorizontalAlignment="Left" Margin="629,36,0,0" VerticalAlignment="Top" Width="95" Height="22" Click="ButtonDeleteProfile_Click"/>
                     <Button x:Name="ButtonRenameProfile" Content="Rinomina profilo" HorizontalAlignment="Left" Margin="529,10,0,0" VerticalAlignment="Top" Width="95" Height="22" Click="ButtonRenameProfile_Click"/>

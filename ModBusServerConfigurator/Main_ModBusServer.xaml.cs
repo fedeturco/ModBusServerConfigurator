@@ -152,6 +152,20 @@ namespace ModBusServerConfigurator
             JavaScriptSerializer jss = new JavaScriptSerializer();
             dynamic tmp = jss.Deserialize<dynamic>(File.ReadAllText(path));
 
+            if (!tmp.ContainsKey("type"))
+            {
+                // MessageBox.Show("Configuration file is not a valid json for this application", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Il file selezionato non è un json di configurazione valido", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (tmp["type"] != "ModBusServerConfig")
+            {
+                // MessageBox.Show("Configuration file is not a valid json for this application", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Il file selezionato non è un json di configurazione valido", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             ActualConfig = new MOD_Config();
 
             foreach (KeyValuePair<string, object> levels in tmp["modBus"])
@@ -299,14 +313,34 @@ namespace ModBusServerConfigurator
 
                             if (din.ContainsKey("notes"))
                             {
-                                slave.notes = din["notes"];
+                                if (din["notes"] != null)
+                                    slave.notes = din["notes"];
+                                else
+                                    slave.notes = "";
                             }
                             else
                             {
                                 slave.notes = "";
                             }
 
-                            slave.slave_id = din["slave_id"];
+                            if (din.ContainsKey("type"))
+                            {
+                                if(din["type"] != null)
+                                    slave.type = din["type"];
+                                else
+                                    slave.type = "ModBusSlave";
+                            }
+                            else
+                            {
+                                slave.type = "ModBusSlave";
+                            }
+
+                            slave.slave_id = new List<int>();
+
+                            foreach(int slaveId in din["slave_id"])
+                            {
+                                slave.slave_id.Add(slaveId);
+                            }
 
                             string[] keys = new string[] { "di", "co", "ir", "hr" };
 
@@ -381,6 +415,7 @@ namespace ModBusServerConfigurator
             //modBus.Add("RTU", ActualConfig.RTU);
             //modBus.Add("profiles", ActualConfig.profiles);
 
+            toSave.Add("type", "ModBusServerConfig");
             toSave.Add("modBus", ActualConfig);
 
             JavaScriptSerializer jss = new JavaScriptSerializer();
@@ -519,7 +554,10 @@ namespace ModBusServerConfigurator
                             ActualConfig.profiles.Find(tmp => tmp.label == oldProfileCombo).ir.len = int.Parse(TextBoxInputRegisterLen.Text);
                             ActualConfig.profiles.Find(tmp => tmp.label == oldProfileCombo).hr.len = int.Parse(TextBoxHoldingRegisterLen.Text);
 
-                            ActualConfig.profiles.Find(tmp => tmp.label == oldProfileCombo).slave_id = int.Parse(TextBoxDeviceId.Text);
+                            List<int> tmp1 = new List<int>();
+                            foreach (string tmp2 in TextBoxDeviceId.Text.Split(','))
+                                tmp1.Add(int.Parse(tmp2));
+                            ActualConfig.profiles.Find(tmp => tmp.label == oldProfileCombo).slave_id = new List<int>(tmp1);
 
                             TextRange textRange = new TextRange(RichTextBoxNotesSlave.Document.ContentStart, RichTextBoxNotesSlave.Document.ContentEnd);
                             ActualConfig.profiles.Find(tmp => tmp.label == oldProfileCombo).notes = textRange.Text;
@@ -544,7 +582,16 @@ namespace ModBusServerConfigurator
                             TextBoxInputRegisterLen.Text = slave.ir.len.ToString();
                             TextBoxHoldingRegisterLen.Text = slave.hr.len.ToString();
 
-                            TextBoxDeviceId.Text = slave.slave_id.ToString();
+                            // Converto lista in csv string
+                            string tmp = "";
+                            for(int i  = 0; i < slave.slave_id.Count; i++)
+                            {
+                                tmp += slave.slave_id[i].ToString();
+
+                                if (i < (slave.slave_id.Count - 1))
+                                    tmp += ",";
+                            }
+                            TextBoxDeviceId.Text = tmp;
 
                             RichTextBoxNotesSlave.Document.Blocks.Clear();
 
@@ -1773,9 +1820,10 @@ namespace ModBusServerConfigurator
 
         public class MOD_SlaveProfile
         {
-            public int slave_id { get; set; }
+            public List<int> slave_id { get; set; }
             public string label { get; set; }
             public string notes { get; set; }
+            public string type { get; set; }
 
             public MOD_RegProfile di { get; set; }
             public MOD_RegProfile co { get; set; }
@@ -1951,10 +1999,14 @@ namespace ModBusServerConfigurator
                     {
                         int tmp = 0;
 
-                        if (int.TryParse(TextBoxDeviceId.Text, out tmp))
+                        List<int> tmp1 = new List<int>();
+
+                        foreach(string tmp2 in TextBoxDeviceId.Text.Split(','))
                         {
-                            slave.slave_id = tmp;
+                            tmp1.Add(int.Parse(tmp2));
                         }
+
+                        slave.slave_id = new List<int>(tmp1);
                     }
                 }
                 catch (Exception err)
@@ -2217,6 +2269,7 @@ namespace ModBusServerConfigurator
             {
                 MOD_SlaveProfile profile = new MOD_SlaveProfile();
                 profile.label = window.fileName;
+                profile.type = "ModBusSlave";
 
                 profile.di = new MOD_RegProfile();
                 profile.di.len = 120;
@@ -2341,13 +2394,33 @@ namespace ModBusServerConfigurator
                     JavaScriptSerializer jss = new JavaScriptSerializer();
                     dynamic profile = jss.DeserializeObject(File.ReadAllText(openFileDialog.FileName));
 
+                    if (!profile.ContainsKey("type"))
+                    {
+                        // MessageBox.Show("Profile file is not a valid json for this application", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Il file selezionato non è un profilo json valido", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+
+                    if (profile["type"] != "ModBusSlave")
+                    {
+                        //MessageBox.Show("Profile file is not a valid json for this application", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Il file selezionato non è un profilo json valido", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+
                     MOD_SlaveProfile slave = new MOD_SlaveProfile();
 
                     slave.label = profile["label"];
+                    slave.notes = profile["notes"];
 
                     // Controllo che non esista gia' un profilo con l'etichetta che sto importando
-                    
-                    slave.slave_id = profile["slave_id"];
+
+                    slave.slave_id = new List<int>();
+
+                    foreach (int slaveId in profile["slave_id"])
+                    {
+                        slave.slave_id.Add(slaveId);
+                    }
 
                     string[] keys = new string[] { "di", "co", "ir", "hr" };
 
