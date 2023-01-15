@@ -1,4 +1,5 @@
 {
+  "type": "ModBusServerConfig",
   "modBus": {
     "debug": true,
     "assignIp": true,
@@ -15,12 +16,27 @@
         ]
       }
     ],
-    "RTU": [],
+    "RTU": [
+      {
+        "enable": false,
+        "label": "Test RTU",
+        "notes": null,
+        "serial": "COM3",
+        "baudrate": 19200,
+        "config": "8N1",
+        "slaves": [
+          "PLC Demo"
+        ]
+      }
+    ],
     "profiles": [
       {
-        "slave_id": [ 0 ],
+        "slave_id": [
+          0
+        ],
         "label": "PoweMeter 1",
         "notes": "",
+        "type": "ModBusSlave",
         "di": {
           "len": 120,
           "data": []
@@ -70,9 +86,12 @@
         }
       },
       {
-        "slave_id": [ 0 ],
+        "slave_id": [
+          0
+        ],
         "label": "PLC Demo",
         "notes": "",
+        "type": "ModBusSlave",
         "di": {
           "len": 120,
           "data": []

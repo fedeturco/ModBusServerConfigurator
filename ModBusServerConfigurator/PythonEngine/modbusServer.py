@@ -464,7 +464,7 @@ if("modBus" in config):
 
                     modbusOBJ["slaves"].append(currRtu) 
 
-                modbusHeadList["RTU"].append(modbusOBJ)
+            modbusHeadList["RTU"].append(modbusOBJ)
 
 # ----------------------------------------------------------------------------------------------------
 

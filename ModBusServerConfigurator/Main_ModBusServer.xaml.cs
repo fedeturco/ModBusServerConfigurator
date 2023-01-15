@@ -2300,7 +2300,7 @@ namespace ModBusServerConfigurator
         {
             try
             {
-                if (MessageBox.Show("Elimiare il profilo: " + slave.label, "Elimina profilo", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Eliminare il profilo " + slave.label + "?", "Elimina profilo", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     if (slave != null)
                     {
