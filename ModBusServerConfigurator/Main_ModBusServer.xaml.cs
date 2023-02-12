@@ -2268,6 +2268,9 @@ namespace ModBusServerConfigurator
             if ((bool)window.ShowDialog())
             {
                 MOD_SlaveProfile profile = new MOD_SlaveProfile();
+                profile.slave_id = new List<int>();
+                profile.slave_id.Add(1);
+
                 profile.label = window.fileName;
                 profile.type = "ModBusSlave";
 
