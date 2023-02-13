@@ -1445,7 +1445,7 @@ namespace ModBusServerConfigurator
             {
                 ListBoxProfiliTcp.Items.Clear();
 
-                if (DataGridHeadTcp.SelectedIndex < ActualConfig.TCP.Count)
+                if (DataGridHeadTcp.SelectedIndex < ActualConfig.TCP.Count())
                 {
                     MOD_HeadTcp currentHead = (MOD_HeadTcp)(DataGridHeadTcp.SelectedItem);
 
@@ -1457,9 +1457,9 @@ namespace ModBusServerConfigurator
                             {
                                 ListBoxProfiliTcp.Items.Add(profile);
                             }
-
-                            ListBoxProfiliTcp.Background = Brushes.White;
                         }
+
+                        ListBoxProfiliTcp.Background = Brushes.White;
                     }
                     else
                     {
@@ -1509,7 +1509,7 @@ namespace ModBusServerConfigurator
             {
                 ListBoxProfiliRtu.Items.Clear();
 
-                if (DataGridHeadRtu.SelectedIndex < ActualConfig.RTU.Count)
+                if (DataGridHeadRtu.SelectedIndex < ActualConfig.RTU.Count())
                 {
                     MOD_HeadRtu currentHead = (MOD_HeadRtu)(DataGridHeadRtu.SelectedItem);
 
@@ -1621,7 +1621,78 @@ namespace ModBusServerConfigurator
                             ButtonRestartService.IsEnabled = false;
                         });
 
-                        MessageBox.Show("Il servizio ModBus non è installato sul Raspberry target.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBoxResult Result =  MessageBox.Show("Il servizio ModBus non è installato sul Raspberry target. Procedere con l'installazione?", "Info", MessageBoxButton.YesNo, MessageBoxImage.Error);
+
+                        if(Result == MessageBoxResult.Yes)
+                        {
+                            BufferLog.Enqueue("Avvio installazione:");
+                            BufferLog.Enqueue("");
+
+                            // Carico installer
+                            string[] filesToUpload = { "/home/pi/installer.sh" };
+
+                            using (ScpClient scpClient = new ScpClient(TextBoxAddress.Text, int.Parse(TextBoxPort.Text), TextBoxUsername.Text, TextBoxPassword.Text))
+                            {
+                                scpClient.KeepAliveInterval = TimeSpan.FromSeconds(60);
+                                scpClient.ConnectionInfo.Timeout = TimeSpan.FromMinutes(180);
+                                scpClient.OperationTimeout = TimeSpan.FromMinutes(180);
+                                scpClient.Connect();
+                                bool connected = scpClient.IsConnected;
+
+                                // RunCommand(host, user, password, "sudo chmod 777 -R " + remotePath);
+                                foreach (string file_ in filesToUpload)
+                                {
+                                    Stream fileRead = File.OpenRead(Directory.GetCurrentDirectory() + "\\LinuxInstaller\\" + System.IO.Path.GetFileName(file_));
+
+                                    scpClient.Upload(fileRead, file_);
+                                    fileRead.Close();
+                                }
+
+                                scpClient.Disconnect();
+
+                            }
+
+                            // Controllo lo stato del servizio
+                            cmd = sshClient.CreateCommand("chmod +x /home/pi/installer.sh");
+
+                            BufferLog.Enqueue(cmd.Execute());
+
+                            cmd = sshClient.CreateCommand("/home/pi/installer.sh");
+
+                            var result = cmd.BeginExecute();
+
+                            uint count = 0;
+                            long timer = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+
+                            using (var reader = new StreamReader(cmd.OutputStream, Encoding.UTF8, true, 1024, true))
+                            {
+                                while (!result.IsCompleted || !reader.EndOfStream)
+                                {
+                                    string line = reader.ReadLine();
+                                    if (line != null)
+                                    {
+                                        line = line.Replace("\n", "");
+                                        BufferLog.Enqueue(line);
+                                        count += 1;
+                                        Console.WriteLine("{0,-10}  [{1,-6}]:  {2}", DateTime.Now.ToString().Split(' ')[1], "raspberry", line);
+
+                                        // Debug
+                                        //Console.WriteLine("count: " + count.ToString());
+
+                                        if ((DateTimeOffset.Now.ToUnixTimeMilliseconds() - timer) > 1000)
+                                        {
+                                            // debug
+                                            //Console.WriteLine("rows per second: " + count.ToString());
+
+                                            count = 0;
+                                            timer = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+                                        }
+                                    }
+                                }
+                            }
+
+                            cmd.EndExecute(result);
+                        }
                     }
 
                     
@@ -3047,6 +3118,28 @@ namespace ModBusServerConfigurator
             {
                 TextBoxTimeoutPing.Text = "100"; // Rimetto default
             }
+        }
+
+        private void CheckBoxSelectAllTcp_Checked(object sender, RoutedEventArgs e)
+        {
+            foreach (MOD_HeadTcp head in ActualConfig.TCP)
+            {
+                head.enable = (bool)CheckBoxSelectAllTcp.IsChecked;
+            }
+
+            DataGridHeadTcp.ItemsSource = null;
+            DataGridHeadTcp.ItemsSource = ActualConfig.TCP;
+        }
+
+        private void CheckBoxSelectAllRtu_Checked(object sender, RoutedEventArgs e)
+        {
+            foreach (MOD_HeadRtu head in ActualConfig.RTU)
+            {
+                head.enable = (bool)CheckBoxSelectAllRtu.IsChecked;
+            }
+
+            DataGridHeadRtu.ItemsSource = null;
+            DataGridHeadRtu.ItemsSource = ActualConfig.RTU;
         }
     }
 }

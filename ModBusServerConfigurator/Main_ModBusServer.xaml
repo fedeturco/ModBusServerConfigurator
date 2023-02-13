@@ -350,7 +350,7 @@
                     </Grid.ColumnDefinitions>
                     <Label Grid.Row="0" Content="TCP HEADS:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                     <Label Grid.Row="1" Content="RTU HEADS:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <DataGrid x:Name="DataGridHeadTcp" Margin="10,41,10,10" AutoGenerateColumns="False" SelectedCellsChanged="DataGridHeadTcp_SelectedCellsChanged">
+                    <DataGrid x:Name="DataGridHeadTcp" Margin="10,41,10,10" AutoGenerateColumns="False" Width="Auto" SelectedCellsChanged="DataGridHeadTcp_SelectedCellsChanged">
                         <DataGrid.Columns>
                             <DataGridCheckBoxColumn Header="Enable" Binding="{Binding enable, UpdateSourceTrigger=PropertyChanged}"  Width="50"/>
                             <DataGridTextColumn Header="Label" Binding="{Binding label}"  Width="250"/>
@@ -406,6 +406,8 @@
                         </ListBox.ContextMenu>
                     </ListBox>
                     <Label Content="Profili slaves disponibili (drag &amp; drop):" Grid.Column="2" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="CheckBoxSelectAllTcp" Content="Select all" HorizontalAlignment="Right" Margin="0,16,10,0" VerticalAlignment="Top" Checked="CheckBoxSelectAllTcp_Checked" Unchecked="CheckBoxSelectAllTcp_Checked"/>
+                    <CheckBox x:Name="CheckBoxSelectAllRtu" Content="Select all" HorizontalAlignment="Right" Margin="0,16,10,0" VerticalAlignment="Top" Grid.Row="1" Checked="CheckBoxSelectAllRtu_Checked" Unchecked="CheckBoxSelectAllRtu_Checked"/>
                 </Grid>
             </TabItem>
             <TabItem Header="ModBus Mapping">
