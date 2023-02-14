@@ -1,10 +1,6 @@
 
-# root access
-PATH_GIT_PROJECT="https://github.com/Fedex1515/ModBusServerConfigurator"
-
 # Installing required packages
 sudo apt-get install -y python3-pip
-sudo apt-get install -y git
 sudo apt-get install -y hostapd
 sudo apt-get install -y dnsmasq
 
@@ -16,25 +12,20 @@ sudo pip3 install pyserial
 pip3 install pymodbus
 pip3 install pyserial
 
-# Cloning git repo in temporary directory
-git clone $PATH_GIT_PROJECT tmp/
-
 # Copying config files for hostapd (hotspot wifi) and dnsmasq (dhcp server wlan side)
-sudo cp tmp/ModBusServerConfigurator/LinuxInstaller/hostapd.conf /etc/hostapd/hostapd.conf
-sudo cp tmp/ModBusServerConfigurator/LinuxInstaller/dnsmasq.conf /etc/dnsmasq.conf
-sudo cp tmp/ModBusServerConfigurator/LinuxInstaller/wlan0 /etc/network/interfaces.d/wlan0
+sudo mv /home/pi/hostapd.conf /etc/hostapd/hostapd.conf
+sudo mv /home/pi/dnsmasq.conf /etc/dnsmasq.conf
+sudo mv /home/pi/wlan0 /etc/network/interfaces.d/wlan0
 
 # Copying python server in home directory
-cp -r tmp/ModBusServerConfigurator/PythonEngine /home/pi/ModBusServerConfigurator
-chown pi /home/pi/ModBusServerConfigurator/config.json
+chown pi /home/pi/ModBusServer/config.json
 
 # Creating symlink for systemd service file
 sudo rm /etc/systemd/system/modbus.service
-sudo ln -s /home/pi/ModBusServerConfigurator/modbus.service /etc/systemd/system/modbus.service
+sudo ln -s /home/pi/ModBusServer/modbus.service /lib/systemd/system/modbus.service
 sudo systemctl enable modbus.service
+sudo service modbus start
 
-# Removing temporary files
-rm -r -f tmp/
 
 # Sometimes the hostapd service is masked after the installation so i solve this checking the actual status
 if sudo service hostapd status | grep "Loaded: masked" -q;

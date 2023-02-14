@@ -51,8 +51,8 @@ except:
 
 try:
     from pymodbus.version import version
-    from pymodbus.server.sync import StartTcpServer
-    from pymodbus.server.sync import StartSerialServer
+    from pymodbus.server import StartTcpServer
+    from pymodbus.server import StartSerialServer
 
     from pymodbus.device import ModbusDeviceIdentification
     from pymodbus.datastore import ModbusSequentialDataBlock    #, ModbusSparseDataBlock
@@ -71,10 +71,10 @@ except:
             print(os.popen("sudo pip3 install pymodbus").read())
 
         from pymodbus.version import version
-        from pymodbus.server.sync import StartTcpServer
-        #from pymodbus.server.sync import StartTlsServer
-        #from pymodbus.server.sync import StartUdpServer
-        from pymodbus.server.sync import StartSerialServer
+        from pymodbus.server import StartTcpServer
+        #from pymodbus.server import StartTlsServer
+        #from pymodbus.server import StartUdpServer
+        from pymodbus.server import StartSerialServer
 
         from pymodbus.device import ModbusDeviceIdentification
         from pymodbus.datastore import ModbusSequentialDataBlock    #, ModbusSparseDataBlock
@@ -82,7 +82,7 @@ except:
         from pymodbus.transaction import ModbusRtuFramer    #, ModbusBinaryFramer
     except:
         print("")
-        print("Error installing pymodbus, check internet connection")
+        print("Error installing pymodbus")
         exit()
 
 
@@ -505,7 +505,6 @@ def runServerTcp(name, objectTcp):
                 co=ModbusSequentialDataBlock(0, currTcp["list_co"]),
                 hr=ModbusSequentialDataBlock(0, currTcp["list_hr"]),
                 ir=ModbusSequentialDataBlock(0, currTcp["list_ir"]))
-
 
         context = ModbusServerContext(slaves=slaves, single=False)
 

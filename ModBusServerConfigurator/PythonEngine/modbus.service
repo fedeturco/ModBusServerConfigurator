@@ -1,5 +1,5 @@
 ﻿[Unit]
-Description=Server DALI
+Description=Server ModBus
 After=network.target
 StartLimitIntervalSec=0
 
@@ -19,6 +19,3 @@ StandardError=append:/var/log/modbus.log
 
 [Install]
 WantedBy=multi-user.target
-
-# Aggiunta servizio a sistema
-#sudo ln -s /home/pi/ModBusServer/modbus.service /etc/systemd/system/modbus.service

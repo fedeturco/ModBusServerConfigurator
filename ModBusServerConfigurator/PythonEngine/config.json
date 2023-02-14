@@ -14,14 +14,24 @@
           "PoweMeter 1",
           "PLC Demo"
         ]
+      },
+      {
+        "enable": true,
+        "label": "Test 2",
+        "notes": null,
+        "ip_address": "192.168.1.87",
+        "port": 502,
+        "slaves": [
+          "PoweMeter 1"
+        ]
       }
     ],
     "RTU": [
       {
-        "enable": false,
+        "enable": true,
         "label": "Test RTU",
         "notes": null,
-        "serial": "COM3",
+        "serial": "/dev/ttyUSB0",
         "baudrate": 19200,
         "config": "8N1",
         "slaves": [

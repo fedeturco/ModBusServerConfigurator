@@ -1621,17 +1621,34 @@ namespace ModBusServerConfigurator
                             ButtonRestartService.IsEnabled = false;
                         });
 
-                        MessageBoxResult Result =  MessageBox.Show("Il servizio ModBus non è installato sul Raspberry target. Procedere con l'installazione?", "Info", MessageBoxButton.YesNo, MessageBoxImage.Error);
+                        MessageBoxResult Result =  MessageBox.Show("Il servizio ModBus non è installato sul Raspberry target. Procedere con l'installazione?", "Info", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
-                        if(Result == MessageBoxResult.Yes)
+                        String address = "";
+                        String port = "";
+                        String user = "";
+                        String pass = "";
+
+                        this.Dispatcher.Invoke((Action)delegate
                         {
+                            address = TextBoxAddress.Text;
+                            port = TextBoxPort.Text;
+                            user = TextBoxUsername.Text;
+                            pass = TextBoxPassword.Text;
+                        });
+
+                        if (Result == MessageBoxResult.Yes)
+                        {
+                            TabControlMain.Dispatcher.Invoke((Action)delegate
+                            {
+                                TabControlMain.SelectedIndex = 2;
+                            });
+
                             BufferLog.Enqueue("Avvio installazione:");
-                            BufferLog.Enqueue("");
 
                             // Carico installer
-                            string[] filesToUpload = { "/home/pi/installer.sh" };
+                            string[] filesToUpload = { "/home/pi/dnsmasq.conf", "/home/pi/hostapd.conf", "/home/pi/installer.sh", "/home/pi/wlan0" };
 
-                            using (ScpClient scpClient = new ScpClient(TextBoxAddress.Text, int.Parse(TextBoxPort.Text), TextBoxUsername.Text, TextBoxPassword.Text))
+                            using (ScpClient scpClient = new ScpClient(address, int.Parse(port), user, pass))
                             {
                                 scpClient.KeepAliveInterval = TimeSpan.FromSeconds(60);
                                 scpClient.ConnectionInfo.Timeout = TimeSpan.FromMinutes(180);
@@ -1649,7 +1666,33 @@ namespace ModBusServerConfigurator
                                 }
 
                                 scpClient.Disconnect();
+                            }
 
+                            // Creo cartella di programma
+                            cmd = sshClient.CreateCommand("mkdir -p /home/pi/ModBusServer");
+
+                            BufferLog.Enqueue(cmd.Execute());
+
+                            string[] filesToUpload_2 = { "/home/pi/ModBusServer/config.json", "/home/pi/ModBusServer/modbus.service", "/home/pi/ModBusServer/modbusServer.py" };
+
+                            using (ScpClient scpClient = new ScpClient(address, int.Parse(port), user, pass))
+                            {
+                                scpClient.KeepAliveInterval = TimeSpan.FromSeconds(60);
+                                scpClient.ConnectionInfo.Timeout = TimeSpan.FromMinutes(180);
+                                scpClient.OperationTimeout = TimeSpan.FromMinutes(180);
+                                scpClient.Connect();
+                                bool connected = scpClient.IsConnected;
+
+                                // RunCommand(host, user, password, "sudo chmod 777 -R " + remotePath);
+                                foreach (string file_ in filesToUpload_2)
+                                {
+                                    Stream fileRead = File.OpenRead(Directory.GetCurrentDirectory() + "\\PythonEngine\\" + System.IO.Path.GetFileName(file_));
+
+                                    scpClient.Upload(fileRead, file_);
+                                    fileRead.Close();
+                                }
+
+                                scpClient.Disconnect();
                             }
 
                             // Controllo lo stato del servizio
@@ -1692,9 +1735,31 @@ namespace ModBusServerConfigurator
                             }
 
                             cmd.EndExecute(result);
+
+                            // Controllo lo stato del servizio
+                            cmd = sshClient.CreateCommand("sudo service modbus status");
+                            output = cmd.Execute();
+
+                            if (output.IndexOf("Active: active (running) since") != -1)
+                            {
+                                ButtonStartService.Dispatcher.Invoke((Action)delegate
+                                {
+                                    ButtonStartService.IsEnabled = false;
+                                    ButtonStopService.IsEnabled = true;
+                                    ButtonRestartService.IsEnabled = true;
+                                });
+                            }
+                            else if (output.IndexOf("Active: inactive (dead)") != -1)
+                            {
+                                ButtonStartService.Dispatcher.Invoke((Action)delegate
+                                {
+                                    ButtonStartService.IsEnabled = true;
+                                    ButtonStopService.IsEnabled = false;
+                                    ButtonRestartService.IsEnabled = true;
+                                });
+                            }
                         }
                     }
-
                     
                     ButtonStartService.Dispatcher.Invoke((Action)delegate
                     {
