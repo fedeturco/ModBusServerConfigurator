@@ -241,7 +241,7 @@ if("modBus" in config):
                 for slave_ids in profiles[profile]["slave_id"]:
 
                     currTcp = {}
-                    currTcp["slave_id"] = profiles[profile]["slave_id"]
+                    currTcp["slave_id"] = slave_ids
 
                     print("")
                     print("ModBus TCP slave [" + profile + "]")
@@ -519,7 +519,7 @@ def runServerTcp(name, objectTcp):
         while(True):
             try:
                 print("\n[" + objectTcp["label"] + "] Starting TCP server on " +  objectTcp["ip_address"] + ":" +  str(objectTcp["port"]))
-                StartTcpServer(context, identity=identity, address=(objectTcp["ip_address"], objectTcp["port"]))
+                StartTcpServer(context=context, identity=identity, address=(objectTcp["ip_address"], objectTcp["port"]))
                 
             except Exception as err:
                 print("[" + objectTcp["label"] + "] " + str(err))
@@ -619,7 +619,8 @@ def runServerRtu(name, objectRtu):
                 ser.open()
                 ser.close()
 
-                StartSerialServer(context, 
+                StartSerialServer(
+                    context=context, 
                     framer=ModbusRtuFramer, 
                     identity=identity, 
                     port=objectRtu["serial"], 

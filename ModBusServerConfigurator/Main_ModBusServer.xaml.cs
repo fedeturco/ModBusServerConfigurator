@@ -1643,6 +1643,7 @@ namespace ModBusServerConfigurator
                                 TabControlMain.SelectedIndex = 2;
                             });
 
+                            BufferLog.Enqueue("");
                             BufferLog.Enqueue("Avvio installazione:");
 
                             // Carico installer
