@@ -1696,13 +1696,33 @@ namespace ModBusServerConfigurator
                                 scpClient.Disconnect();
                             }
 
+                            // CRLF to LF
+                            cmd = sshClient.CreateCommand("sed -i 's/\r$//g' /home/pi/dnsmasq.conf");
+                            BufferLog.Enqueue(cmd.Execute());
+
+                            cmd = sshClient.CreateCommand("sed -i 's/\r$//g' /home/pi/hostapd.conf");
+                            BufferLog.Enqueue(cmd.Execute());
+
+                            cmd = sshClient.CreateCommand("sed -i 's/\r$//g' /home/pi/installer.sh");
+                            BufferLog.Enqueue(cmd.Execute());
+
+                            cmd = sshClient.CreateCommand("sed -i 's/\r$//g' /home/pi/wlan0");
+                            BufferLog.Enqueue(cmd.Execute());
+
+                            cmd = sshClient.CreateCommand("sed -i 's/\r$//g' /home/pi/ModBusServer/config.json");
+                            BufferLog.Enqueue(cmd.Execute());
+
+                            cmd = sshClient.CreateCommand("sed -i 's/\r$//g' /home/pi/ModBusServer/modbus.service");
+                            BufferLog.Enqueue(cmd.Execute());
+
+                            cmd = sshClient.CreateCommand("sed -i 's/\r$//g' /home/pi/ModBusServer/modbusServer.py");
+                            BufferLog.Enqueue(cmd.Execute());
+
                             // Controllo lo stato del servizio
                             cmd = sshClient.CreateCommand("chmod +x /home/pi/installer.sh");
-
                             BufferLog.Enqueue(cmd.Execute());
 
                             cmd = sshClient.CreateCommand("/home/pi/installer.sh");
-
                             var result = cmd.BeginExecute();
 
                             uint count = 0;

@@ -23,6 +23,7 @@ chown pi /home/pi/ModBusServer/config.json
 # Creating symlink for systemd service file
 sudo rm /etc/systemd/system/modbus.service
 sudo ln -s /home/pi/ModBusServer/modbus.service /lib/systemd/system/modbus.service
+sudo systemctl daemon-reload
 sudo systemctl enable modbus.service
 sudo service modbus start
 
