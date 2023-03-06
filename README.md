@@ -4,8 +4,8 @@
 
 ## Release
 
-### v1.0
-https://github.com/Fedex1515/ModBusServerConfigurator/releases/download/1.0/ModBusServerConfigurator_v1.0.zip
+### v1.3
+https://github.com/Fedex1515/ModBusServerConfigurator/releases/download/1.3/ModBusServerConfigurator_v1.3.zip
 
 ## Manuale
 
@@ -15,7 +15,7 @@ TODO
 
 https://github.com/Fedex1515/ModBusServerConfigurator/blob/master/ModBusServerConfigurator/LinuxInstaller/installer.sh
 
-A partire dalla versione 1.1 l'installer sarà integrato direttamente nel client, e chiederà all'utente di effettuare l'installazione qual ora non trovi il damone installato sul target configurato (raspberry o altra board linux embedded).
+A partire dalla versione 1.1 l'installer è integrato direttamente nel client, viene richiesto all'utente di effettuare l'installazione qual ora non il client trovi il damone installato sul target configurato (raspberry o altra board linux embedded).
 
 ## Descrizione
 
