@@ -359,10 +359,6 @@ if("modBus" in config):
             print("config: " + modbusOBJ["config"])
             print("")
 
-            if(not modbusOBJ["serial"] in sorted(ports)[0]):
-                print("Port not found")
-                continue
-
             actualConfig += "\n"
             actualConfig += ("-----------------------------------------------\n")
             actualConfig += ("--------------- ModBus RTU HEAD ---------------\n")
