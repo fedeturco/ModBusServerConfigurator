@@ -885,7 +885,7 @@ namespace ModBusServerConfigurator
                 try
                 {
                     string[] filesToDownload = {
-                    "/home/pi/ModBusServer/config.json"
+                    "/etc/ModBusServer/config.json"
                 };
 
                     using (ScpClient scpClient = new ScpClient(TextBoxAddress.Text, int.Parse(TextBoxPort.Text), TextBoxUsername.Text, TextBoxPassword.Text))
@@ -981,7 +981,7 @@ namespace ModBusServerConfigurator
             {
                 try
                 {
-                    string[] filesToUpload = { "/home/pi/ModBusServer/config.json" };
+                    string[] filesToUpload = { "/etc/ModBusServer/config.json" };
 
                     using (ScpClient scpClient = new ScpClient(TextBoxAddress.Text, int.Parse(TextBoxPort.Text), TextBoxUsername.Text, TextBoxPassword.Text))
                     {
@@ -1647,7 +1647,7 @@ namespace ModBusServerConfigurator
                             BufferLog.Enqueue("Avvio installazione:");
 
                             // Carico installer
-                            string[] filesToUpload = { "/home/pi/dnsmasq.conf", "/home/pi/hostapd.conf", "/home/pi/installer.sh", "/home/pi/wlan0" };
+                            string[] filesToUpload = { "/home/" + user + "/dnsmasq.conf", "/home/" + user + "/hostapd.conf", "/home/" + user + "/installer.sh", "/home/" + user + "/wlan0" };
 
                             using (ScpClient scpClient = new ScpClient(address, int.Parse(port), user, pass))
                             {
@@ -1670,11 +1670,11 @@ namespace ModBusServerConfigurator
                             }
 
                             // Creo cartella di programma
-                            cmd = sshClient.CreateCommand("mkdir -p /home/pi/ModBusServer");
+                            cmd = sshClient.CreateCommand("mkdir -p /home/" + user + "/ModBusServer");
 
                             BufferLog.Enqueue(cmd.Execute());
 
-                            string[] filesToUpload_2 = { "/home/pi/ModBusServer/config.json", "/home/pi/ModBusServer/modbus.service", "/home/pi/ModBusServer/modbusServer.py" };
+                            string[] filesToUpload_2 = { "/home/" + user + "/ModBusServer/config.json", "/home/" + user + "/ModBusServer/modbus.service", "/home/" + user + "/ModBusServer/modbusServer.py" };
 
                             using (ScpClient scpClient = new ScpClient(address, int.Parse(port), user, pass))
                             {
@@ -1697,32 +1697,35 @@ namespace ModBusServerConfigurator
                             }
 
                             // CRLF to LF
-                            cmd = sshClient.CreateCommand("sed -i 's/\r$//g' /home/pi/dnsmasq.conf");
+                            cmd = sshClient.CreateCommand("sed -i 's/\r$//g' /home/" + user + "/dnsmasq.conf");
                             BufferLog.Enqueue(cmd.Execute());
 
-                            cmd = sshClient.CreateCommand("sed -i 's/\r$//g' /home/pi/hostapd.conf");
+                            cmd = sshClient.CreateCommand("sed -i 's/\r$//g' /home/" + user + "/hostapd.conf");
                             BufferLog.Enqueue(cmd.Execute());
 
-                            cmd = sshClient.CreateCommand("sed -i 's/\r$//g' /home/pi/installer.sh");
+                            cmd = sshClient.CreateCommand("sed -i 's/\r$//g' /home/" + user + "/installer.sh");
                             BufferLog.Enqueue(cmd.Execute());
 
-                            cmd = sshClient.CreateCommand("sed -i 's/\r$//g' /home/pi/wlan0");
+                            cmd = sshClient.CreateCommand("sed -i 's/$USER/" + user + "/g' /home/" + user + "/installer.sh");
                             BufferLog.Enqueue(cmd.Execute());
 
-                            cmd = sshClient.CreateCommand("sed -i 's/\r$//g' /home/pi/ModBusServer/config.json");
+                            cmd = sshClient.CreateCommand("sed -i 's/\r$//g' /home/" + user + "/wlan0");
                             BufferLog.Enqueue(cmd.Execute());
 
-                            cmd = sshClient.CreateCommand("sed -i 's/\r$//g' /home/pi/ModBusServer/modbus.service");
+                            cmd = sshClient.CreateCommand("sed -i 's/\r$//g' /etc/ModBusServer/config.json");
                             BufferLog.Enqueue(cmd.Execute());
 
-                            cmd = sshClient.CreateCommand("sed -i 's/\r$//g' /home/pi/ModBusServer/modbusServer.py");
+                            cmd = sshClient.CreateCommand("sed -i 's/\r$//g' /etc/ModBusServer/modbus.service");
+                            BufferLog.Enqueue(cmd.Execute());
+
+                            cmd = sshClient.CreateCommand("sed -i 's/\r$//g' /etc/ModBusServer/modbusServer.py");
                             BufferLog.Enqueue(cmd.Execute());
 
                             // Controllo lo stato del servizio
-                            cmd = sshClient.CreateCommand("chmod +x /home/pi/installer.sh");
+                            cmd = sshClient.CreateCommand("chmod +x /home/" + user + "/installer.sh");
                             BufferLog.Enqueue(cmd.Execute());
 
-                            cmd = sshClient.CreateCommand("/home/pi/installer.sh");
+                            cmd = sshClient.CreateCommand("/home/" + user + "/installer.sh");
                             var result = cmd.BeginExecute();
 
                             uint count = 0;
@@ -3226,6 +3229,11 @@ namespace ModBusServerConfigurator
 
             DataGridHeadRtu.ItemsSource = null;
             DataGridHeadRtu.ItemsSource = ActualConfig.RTU;
+        }
+
+        private void TextBoxUsername_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

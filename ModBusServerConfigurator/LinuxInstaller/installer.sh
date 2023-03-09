@@ -13,16 +13,22 @@ pip3 install pymodbus
 pip3 install pyserial
 
 # Copying config files for hostapd (hotspot wifi) and dnsmasq (dhcp server wlan side)
-sudo mv /home/pi/hostapd.conf /etc/hostapd/hostapd.conf
-sudo mv /home/pi/dnsmasq.conf /etc/dnsmasq.conf
-sudo mv /home/pi/wlan0 /etc/network/interfaces.d/wlan0
+sudo mv /home/$USER/hostapd.conf /etc/hostapd/hostapd.conf
+sudo mv /home/$USER/dnsmasq.conf /etc/dnsmasq.conf
+sudo mv /home/$USER/wlan0 /etc/network/interfaces.d/wlan0
+
+sudo mkdir -p /etc/ModBusServer
+sudo mv /home/$USER/ModBusServer/config.json /etc/ModBusServer/config.json
+sudo mv /home/$USER/ModBusServer/modbus.service /lib/systemd/system/modbus.service
+sudo mv /home/$USER/ModBusServer/modbusServer.py /etc/ModBusServer/modbusServer.py
+sudo rm -r /home/$USER/ModBusServer
 
 # Copying python server in home directory
-chown pi /home/pi/ModBusServer/config.json
+chown root /etc/ModBusServer/config.json
 
 # Creating symlink for systemd service file
 sudo rm /etc/systemd/system/modbus.service
-sudo ln -s /home/pi/ModBusServer/modbus.service /lib/systemd/system/modbus.service
+sudo mv /lib/systemd/system/modbus.service
 sudo systemctl daemon-reload
 sudo systemctl enable modbus.service
 sudo service modbus start

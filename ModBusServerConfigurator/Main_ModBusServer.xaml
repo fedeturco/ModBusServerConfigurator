@@ -528,7 +528,7 @@
                     <Label Content="Porta:" HorizontalAlignment="Left" Margin="18,96,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="TextBoxAddress" HorizontalAlignment="Left" Height="23" Margin="104,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
                     <TextBox x:Name="TextBoxPort" HorizontalAlignment="Left" Height="23" Margin="104,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="71"/>
-                    <TextBox x:Name="TextBoxUsername" HorizontalAlignment="Left" Height="23" Margin="104,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
+                    <TextBox x:Name="TextBoxUsername" HorizontalAlignment="Left" Height="23" Margin="104,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" TextChanged="TextBoxUsername_TextChanged"/>
                     <TextBox x:Name="TextBoxPassword" HorizontalAlignment="Left" Height="23" Margin="104,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
                     <Label Content="Configurazione specifica Raspberry:" HorizontalAlignment="Left" Margin="18,18,0,0" VerticalAlignment="Top" FontSize="14"/>
                     <CheckBox x:Name="CheckBoxSubscribeLog" Content="Apri log nel terminale automaticamene con connect (tail -f /var/log/modbus.log) " HorizontalAlignment="Left" Margin="18,209,0,0" VerticalAlignment="Top"/>

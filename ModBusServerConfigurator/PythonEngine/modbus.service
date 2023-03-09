@@ -7,9 +7,9 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=30
-User=pi
-WorkingDirectory=/home/pi/ModBusServer
-ExecStart=sudo python3 -u /home/pi/ModBusServer/modbusServer.py
+User=root
+WorkingDirectory=/etc/ModBusServer
+ExecStart=sudo python3 -u /etc/ModBusServer/modbusServer.py
 
 StandardOutput=append:/var/log/modbus.log
 StandardError=append:/var/log/modbus.log
