@@ -38,7 +38,7 @@
     <StartupObject />
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Bozzetto_logo_4.ico</ApplicationIcon>
+    <ApplicationIcon>Logo\Modbus_logo_48.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Renci.SshNet, Version=2020.0.1.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
@@ -81,6 +81,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Language.cs" />
     <Compile Include="RenameProfile.xaml.cs">
       <DependentUpon>RenameProfile.xaml</DependentUpon>
     </Compile>
@@ -117,6 +118,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Lang\IT.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="LinuxInstaller\wlan0">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -147,6 +151,9 @@
     <Resource Include="Img\Screenshot_3.PNG" />
     <Resource Include="Img\Screenshot_4.PNG" />
     <Resource Include="Bozzetto_logo_4.ico" />
+    <Resource Include="Logo\Modbus_logo_48.ico" />
+    <Content Include="Logo\Modbus_logo.svg" />
+    <Resource Include="Logo\Modbus_logo_256.ico" />
     <Content Include="PythonEngine\modbusServer.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

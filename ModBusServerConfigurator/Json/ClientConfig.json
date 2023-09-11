@@ -20,6 +20,9 @@
 		"radioButtons": {
 			"RadioButtonWindows": "",
 			"RadioButtonRaspberry": ""
+		},
+		"comboBoxes": {
+			"ComboBoxLanguage": ""
 		}
 	}
 }

@@ -379,7 +379,7 @@
                         </ListBox.ContextMenu>
                     </ListBox>
 
-                    <Label Content="Slaves attivi sulla head selezionata:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="LabelSlavesTcp" Content="Slaves attivi sulla head selezionata:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
 
                     <ListBox x:Name="ListBoxProfiliRtu" Grid.Column="1" Margin="10,41,10,9" Grid.Row="1" DragEnter="ListBoxProfiliRtu_DragEnter" AllowDrop="True" KeyUp="ListBoxProfiliRtu_KeyUp" Background="#FFE5E5E5">
                         <ListBox.ContextMenu>
@@ -390,7 +390,7 @@
                         </ListBox.ContextMenu>
                     </ListBox>
 
-                    <Label Content="Slaves attivi sulla head selezionata:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                    <Label x:Name="LabelSlavesRtu" Content="Slaves attivi sulla head selezionata:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="1"/>
                     <ListBox x:Name="ListBoxProfiliDisponibili" Grid.Column="2" Margin="10,41,10,9" Grid.RowSpan="2" AllowDrop="True" MouseMove="ListBoxProfiliDisponibili_MouseMove" >
                         <ListBox.ContextMenu>
                             <ContextMenu>
@@ -405,7 +405,7 @@
                             </ContextMenu>
                         </ListBox.ContextMenu>
                     </ListBox>
-                    <Label Content="Profili slaves disponibili (drag &amp; drop):" Grid.Column="2" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="LabelSlavesProfiles" Content="Profili slaves disponibili (drag &amp; drop):" Grid.Column="2" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                     <CheckBox x:Name="CheckBoxSelectAllTcp" Content="Select all" HorizontalAlignment="Right" Margin="0,16,10,0" VerticalAlignment="Top" Checked="CheckBoxSelectAllTcp_Checked" Unchecked="CheckBoxSelectAllTcp_Checked"/>
                     <CheckBox x:Name="CheckBoxSelectAllRtu" Content="Select all" HorizontalAlignment="Right" Margin="0,16,10,0" VerticalAlignment="Top" Grid.Row="1" Checked="CheckBoxSelectAllRtu_Checked" Unchecked="CheckBoxSelectAllRtu_Checked"/>
                 </Grid>
@@ -422,7 +422,7 @@
                                         <DataGridTextColumn Header="Label" Binding="{Binding Path=label, Mode=TwoWay}" Width="Auto" MinWidth="600"/>
                                     </DataGrid.Columns>
                                 </DataGrid>
-                                <Label Content="Len:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                                <Label x:Name="LabelCoilsLen" Content="Len:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                                 <TextBox x:Name="TextBoxCoilsLen" HorizontalAlignment="Left" Height="23" Margin="54,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBoxCoilsLen_TextChanged"/>
                             </Grid>
                         </TabItem>
@@ -435,7 +435,7 @@
                                         <DataGridTextColumn Header="Label" Binding="{Binding Path=label, Mode=TwoWay}" Width="Auto" MinWidth="600"/>
                                     </DataGrid.Columns>
                                 </DataGrid>
-                                <Label Content="Len:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                                <Label x:Name="LabelInputsLen" Content="Len:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                                 <TextBox x:Name="TextBoxInputsLen" HorizontalAlignment="Left" Height="23" Margin="54,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBoxInputsLen_TextChanged"/>
                             </Grid>
                         </TabItem>
@@ -448,7 +448,7 @@
                                         <DataGridTextColumn Header="Label" Binding="{Binding Path=label, Mode=TwoWay}" Width="Auto" MinWidth="600"/>
                                     </DataGrid.Columns>
                                 </DataGrid>
-                                <Label Content="Len:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                                <Label x:Name="LabelInputRegisterLen" Content="Len:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                                 <TextBox x:Name="TextBoxInputRegisterLen" HorizontalAlignment="Left" Height="23" Margin="54,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBoxInputRegisterLen_TextChanged"/>
                             </Grid>
                         </TabItem>
@@ -461,7 +461,7 @@
                                         <DataGridTextColumn Header="Label" Binding="{Binding Path=label, Mode=TwoWay}" Width="Auto" MinWidth="600"/>
                                     </DataGrid.Columns>
                                 </DataGrid>
-                                <Label Content="Len:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                                <Label x:Name="LabelHoldingRegisterLen" Content="Len:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                                 <TextBox x:Name="TextBoxHoldingRegisterLen" HorizontalAlignment="Left" Height="23" Margin="54,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBoxHoldingRegisterLen_TextChanged"/>
                             </Grid>
                         </TabItem>
@@ -477,16 +477,16 @@
                             </Grid>
                         </TabItem>
                     </TabControl>
-                    <Label Content="Profilo slave:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="LabelProfileSLave" Content="Profilo slave:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                     <ComboBox x:Name="ComboBoxProfiles" HorizontalAlignment="Left" Margin="125,10,0,0" VerticalAlignment="Top" Width="299" SelectionChanged="ComboBoxProfiles_SelectionChanged"/>
                     <Button x:Name="ButtonNewProfile" Content="Nuovo profilo" HorizontalAlignment="Left" Margin="429,10,0,0" VerticalAlignment="Top" Width="95" Height="22" Click="ButtonNewProfile_Click"/>
                     <TextBox x:Name="TextBoxDeviceId" HorizontalAlignment="Right" Height="23" Margin="0,36,13,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" TextChanged="TextBoxDeviceId_TextChanged" ToolTip="Insert multiple IDs separated by commas"/>
-                    <Label Content="ID ModBus Slave:" HorizontalAlignment="Right" Margin="0,8,51,0" VerticalAlignment="Top"/>
+                    <Label x:Name="LabelIdModbusSlave" Content="ID ModBus Slave:" HorizontalAlignment="Right" Margin="0,8,51,0" VerticalAlignment="Top"/>
                     <Button x:Name="ButtonDeleteProfile" Content="Elimina profilo" HorizontalAlignment="Left" Margin="629,36,0,0" VerticalAlignment="Top" Width="95" Height="22" Click="ButtonDeleteProfile_Click"/>
                     <Button x:Name="ButtonRenameProfile" Content="Rinomina profilo" HorizontalAlignment="Left" Margin="529,10,0,0" VerticalAlignment="Top" Width="95" Height="22" Click="ButtonRenameProfile_Click"/>
                     <Button x:Name="ButtonImportProfile" Content="Importa profilo" HorizontalAlignment="Left" Margin="429,36,0,0" VerticalAlignment="Top" Width="95" Height="22" Click="ButtonImportProfile_Click"/>
                     <Button x:Name="ButtonExportProfile" Content="Esporta profilo" HorizontalAlignment="Left" Margin="529,36,0,0" VerticalAlignment="Top" Width="95" Height="22" Click="ButtonExportProfile_Click"/>
-                    <Button x:Name="ButtonDuplicateProfile" Content="Duplica profilo" HorizontalAlignment="Left" Margin="629,10,0,0" VerticalAlignment="Top" Width="95" Height="22" Click="ButtonDuplicateProfile_Click"/>
+                    <Button x:Name="ButtonDuplicateProfile" Content="Duplica profilo" HorizontalAlignment="Left" Margin="629,10,0,0" VerticalAlignment="Top" Width="95" Height="22" Click="ButtonDuplicateProfile_Click" IsCancel="True"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Terminal">
@@ -513,7 +513,7 @@
                     <RichTextBox x:Name="RichTextBoxOutput" Margin="10,33,10,10" Background="#303030" Foreground="White" FontFamily="Consolas" FontSize="14" IsReadOnly="True" Block.LineHeight="1">
                         <FlowDocument/>
                     </RichTextBox>
-                    <Button x:Name="ButtonClearTerminal_Copy" Content="Clear" HorizontalAlignment="Right" Margin="0,8,10,0" VerticalAlignment="Top" Width="75" Click="ButtonClearTerminal_Copy_Click"/>
+                    <Button x:Name="ButtonClearTerminalSsh" Content="Clear" HorizontalAlignment="Right" Margin="0,8,10,0" VerticalAlignment="Top" Width="75" Click="ButtonClearTerminal_Copy_Click"/>
                     <TextBox x:Name="TextBoxManualCommand" HorizontalAlignment="Left" Height="20" Margin="10,8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="385" KeyUp="TextBoxManualCommand_KeyUp"/>
                     <Button x:Name="ButtonSendManualCommand" Content="Send" HorizontalAlignment="Left" Margin="400,8,0,0" VerticalAlignment="Top" Width="75" Height="20" IsEnabled="False" Click="ButtonSendManualCommand_Click"/>
                     <Button x:Name="ButtonPowerOff" Content="Power OFF" HorizontalAlignment="Right" Margin="0,8,90,0" VerticalAlignment="Top" Width="75" Height="20" Click="ButtonPowerOff_Click" IsEnabled="False"/>
@@ -522,15 +522,15 @@
             </TabItem>
             <TabItem x:Name="TabItemSettings" Header="Settings">
                 <Grid Background="#FFE5E5E5">
-                    <Label Content="Username:" HorizontalAlignment="Left" Margin="18,127,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Password:" HorizontalAlignment="Left" Margin="18,158,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Indirizzo IP:" HorizontalAlignment="Left" Margin="18,65,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Porta:" HorizontalAlignment="Left" Margin="18,96,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="LabelSettingsUsername" Content="Username:" HorizontalAlignment="Left" Margin="18,127,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="LabelSettingsPassword" Content="Password:" HorizontalAlignment="Left" Margin="18,158,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="LabelSettingsPortIpAddress" Content="Indirizzo IP:" HorizontalAlignment="Left" Margin="18,65,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="LabelSettingsPort" Content="Porta:" HorizontalAlignment="Left" Margin="18,96,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="TextBoxAddress" HorizontalAlignment="Left" Height="23" Margin="104,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
                     <TextBox x:Name="TextBoxPort" HorizontalAlignment="Left" Height="23" Margin="104,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="71"/>
-                    <TextBox x:Name="TextBoxUsername" HorizontalAlignment="Left" Height="23" Margin="104,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" TextChanged="TextBoxUsername_TextChanged"/>
+                    <TextBox x:Name="TextBoxUsername" HorizontalAlignment="Left" Height="23" Margin="104,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
                     <TextBox x:Name="TextBoxPassword" HorizontalAlignment="Left" Height="23" Margin="104,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
-                    <Label Content="Configurazione specifica Raspberry:" HorizontalAlignment="Left" Margin="18,18,0,0" VerticalAlignment="Top" FontSize="14"/>
+                    <Label x:Name="LabelConfigRaspberry" Content="Configurazione specifica Raspberry:" HorizontalAlignment="Left" Margin="18,18,0,0" VerticalAlignment="Top" FontSize="14"/>
                     <CheckBox x:Name="CheckBoxSubscribeLog" Content="Apri log nel terminale automaticamene con connect (tail -f /var/log/modbus.log) " HorizontalAlignment="Left" Margin="18,209,0,0" VerticalAlignment="Top"/>
                     <CheckBox x:Name="CheckBoxAddAddressEth0" Content="Aggiungi automaticamente indirizzi IP alla scheda eth0" HorizontalAlignment="Left" Margin="18,229,0,0" VerticalAlignment="Top" Checked="CheckBoxAddAddressEth0_Checked" Unchecked="CheckBoxAddAddressEth0_Checked"/>
                     <Label Content="Local Windows" HorizontalAlignment="Left" Margin="567,57,0,0" VerticalAlignment="Top" Background="White"/>
@@ -541,15 +541,18 @@
                     <Button x:Name="ButtonDownloadFromRaspberry" Content="&lt;&lt; Scarica da Raspberry &lt;&lt;" HorizontalAlignment="Left" Margin="660,140,0,0" VerticalAlignment="Top" Width="163" Height="25" Click="ButtonDownloadFromRaspberry_Click" IsEnabled="False"/>
                     <Label Content="config.json  &lt;-" HorizontalAlignment="Left" Margin="567,139,0,0" VerticalAlignment="Top" Background="White"/>
                     <Label Content="&lt;-  config.json" HorizontalAlignment="Left" Margin="828,139,0,0" VerticalAlignment="Top" Background="White"/>
-                    <Label Content="Operazioni sui file di configurazione:" HorizontalAlignment="Left" Margin="567,18,0,0" VerticalAlignment="Top" FontSize="14"/>
-                    <Label Content="Configurazione generale" HorizontalAlignment="Left" Margin="18,313,0,0" VerticalAlignment="Top" FontSize="14"/>
-                    <Label Content="Max numero paragrafi buffer Terminal:" HorizontalAlignment="Left" Margin="18,356,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="LabelFileOperations" Content="Operazioni sui file di configurazione:" HorizontalAlignment="Left" Margin="567,18,0,0" VerticalAlignment="Top" FontSize="14"/>
+                    <Label x:Name="LabelConfigGenerale" Content="Configurazione generale" HorizontalAlignment="Left" Margin="18,313,0,0" VerticalAlignment="Top" FontSize="14"/>
+                    <Label x:Name="LabelLogInfo1" Content="Max numero paragrafi buffer Terminal:" HorizontalAlignment="Left" Margin="18,356,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="TextBoxTerminalRows" HorizontalAlignment="Left" Height="23" Margin="236,358,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="110" Text="500" TextChanged="TextBoxTerminalRows_TextChanged"/>
-                    <Label Content="Il log è gestito a praragrafi con numero di righe variabile da 1 a 10 a seconda della coda presente nella console quando viene fatto il dequeue." Margin="18,382,10,0" VerticalAlignment="Top"/>
+                    <Label x:Name="LabelLogInfo2" Content="Il log è gestito a praragrafi con numero di righe variabile da 1 a 10 a seconda della coda presente nella console quando viene fatto il dequeue." Margin="18,382,10,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="TextBoxOldPathImportExportConfig" HorizontalAlignment="Left" Height="23" Margin="18,0,0,38" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="520" Visibility="Hidden"/>
                     <TextBox x:Name="TextBoxOldPathImportExportProfile" HorizontalAlignment="Left" Height="23" Margin="18,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="520" Visibility="Hidden"/>
-                    <Label Content="Timeout ping raspberry [ms]:" HorizontalAlignment="Left" Margin="18,264,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="LabelTimeoutPing" Content="Timeout ping raspberry [ms]:" HorizontalAlignment="Left" Margin="18,264,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="TextBoxTimeoutPing" HorizontalAlignment="Left" Height="23" Margin="186,267,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="73" Text="100" ToolTip="Timeout ping Rasperry prima di eseguire un comando SSH/SCP" TextChanged="TextBoxTimeoutPing_TextChanged"/>
+                    <Label x:Name="LabelCurrentLanguage" Content="Current Language:" HorizontalAlignment="Left" Margin="18,477,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="LabelLanguageSettings" Content="Lingua" HorizontalAlignment="Left" Margin="18,436,0,0" VerticalAlignment="Top" FontSize="14"/>
+                    <ComboBox x:Name="ComboBoxLanguage" HorizontalAlignment="Left" Margin="236,479,0,0" VerticalAlignment="Top" Width="110" SelectionChanged="ComboBoxLanguage_SelectionChanged"/>
                 </Grid>
             </TabItem>
         </TabControl>

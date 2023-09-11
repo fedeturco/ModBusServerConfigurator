@@ -49,6 +49,9 @@ using Microsoft.Win32;
 // Visualizza/Nascondi console
 using System.Runtime.InteropServices;
 
+// Libreria custom per caricare etichette in lingue differenti
+using LanguageLib;
+
 using Renci.SshNet;
 
 namespace ModBusServerConfigurator
@@ -102,6 +105,9 @@ namespace ModBusServerConfigurator
 
         public uint rowMaxLog = 10;
         public int pingTimeout = 100;
+
+        public Language lang;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -119,6 +125,9 @@ namespace ModBusServerConfigurator
 
             // Chiudo console all'avvio
             chiudiConsole();
+
+            // Inizializzo classe della lingua
+            lang = new Language(this);
         }
 
         // Visualizza console programma da menu tendina
@@ -490,6 +499,28 @@ namespace ModBusServerConfigurator
                         toSave.Add("radioButtons", radioButtons);
 
                         break;
+                    
+                    case "comboBoxes":
+
+                        Dictionary<string, string> comboBoxes = new Dictionary<string, string>();
+
+                        foreach (KeyValuePair<string, dynamic> obj in idToSave.Value)
+                        {
+                            // debug
+                            //Console.WriteLine(" -Key: " + obj.Key);
+                            //Console.WriteLine(" -Value: " + obj.Value);
+
+                            ComboBox comboBox = (ComboBox)this.FindName(obj.Key);
+
+                            if(comboBox.SelectedItem != null)
+                                comboBoxes.Add(obj.Key, (string)comboBox.SelectedItem.ToString());   // IdTextBox, Value
+                        }
+
+                        toSave.Add("comboBoxes", comboBoxes);
+
+                        break;
+
+                    
                 }
             }
 
@@ -529,6 +560,20 @@ namespace ModBusServerConfigurator
                             {
                                 RadioButton radioButton = (RadioButton)this.FindName(radioButtons.Key);
                                 radioButton.IsChecked = (bool)radioButtons.Value;
+                            }
+                            break;
+
+                        case "comboBoxes":
+                            foreach (KeyValuePair<string, object> comboBoxes in file_CFG["comboBoxes"])
+                            {
+                                ComboBox comboBox = (ComboBox)this.FindName(comboBoxes.Key);
+                                for(int i = 0; i < comboBox.Items.Count; i++)
+                                {
+                                    if (comboBox.Items[i].ToString() == comboBoxes.Value.ToString())
+                                    {
+                                        comboBox.SelectedIndex = i;
+                                    }
+                                }
                             }
                             break;
                     }
@@ -1409,6 +1454,13 @@ namespace ModBusServerConfigurator
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             this.Title = "ModBus Server Configurator - " + Assembly.GetExecutingAssembly().GetName().Version;
+
+            ComboBoxLanguage.Items.Clear();
+            foreach (String fileName in Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Lang\\"))
+            {
+                ComboBoxLanguage.Items.Add(System.IO.Path.GetFileNameWithoutExtension(fileName));
+            }
+
             loadConfig();
 
             logDequeueThread = new Thread(new ThreadStart(DequeueLog));
@@ -3231,9 +3283,11 @@ namespace ModBusServerConfigurator
             DataGridHeadRtu.ItemsSource = ActualConfig.RTU;
         }
 
-        private void TextBoxUsername_TextChanged(object sender, TextChangedEventArgs e)
+        private void ComboBoxLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            String language = ComboBoxLanguage.SelectedValue.ToString();
+            if(File.Exists("Lang\\" + language + ".json"))
+                lang.loadLanguageTemplate(language);
         }
     }
 }

@@ -5,18 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ModBusServerConfigurator"
         mc:Ignorable="d"
-        Title="Info" Height="220.645" Width="386.774"
-        WindowStartupLocation="CenterOwner">
+        Title="Info" Height="250" Width="455"
+        WindowStartupLocation="CenterOwner" MinWidth="455" MaxWidth="455" MinHeight="250" MaxHeight="250">
     <Grid>
-        <Label Content="Data Build:" HorizontalAlignment="Left" Margin="26,93,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label Content="Autore:" HorizontalAlignment="Left" Margin="26,127,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label x:Name="LabelAuthor" Content="Federico Turco" HorizontalAlignment="Left" Margin="134,127,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Image Margin="304,119,0,0" Source="Bozzetto_logo_4.ico" Stretch="Fill" HorizontalAlignment="Left" Width="44" Height="45" VerticalAlignment="Top"/>
-        <Label Content="Versione:" HorizontalAlignment="Left" Margin="26,14,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label x:Name="LabelDataBuild" Content="" HorizontalAlignment="Left" Margin="134,93,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content="Build date:" HorizontalAlignment="Left" Margin="26,86,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content="Author:" HorizontalAlignment="Left" Margin="26,122,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label x:Name="LabelAuthor" Content="Federico Turco" HorizontalAlignment="Left" Margin="134,122,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content="Version:" HorizontalAlignment="Left" Margin="26,14,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label x:Name="LabelDataBuild" Content="" HorizontalAlignment="Left" Margin="134,86,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label x:Name="LabelVersion" Content="" HorizontalAlignment="Left" Margin="134,14,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label Content="Build Number:" HorizontalAlignment="Left" Margin="26,50,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label x:Name="LabelBuild" Content="" HorizontalAlignment="Left" Margin="134,50,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <ComboBox HorizontalAlignment="Left" Height="0" Margin="583,264,0,0" VerticalAlignment="Top" Width="120"/>
+        <Image HorizontalAlignment="Left" Height="104" Margin="307,22,0,0" VerticalAlignment="Top" Width="104" Source="Logo/Modbus_logo_256.ico"/>
+        <Label x:Name="LabelLinkRepository" Content="https://github.com/fedeturco" HorizontalAlignment="Left" Margin="134,158,0,0" VerticalAlignment="Top" FontSize="14" MouseUp="LabelLinkRepository_MouseUp" Foreground="#FF0E72B8"/>
+        <Label Content="Repository:" HorizontalAlignment="Left" Margin="26,158,0,0" VerticalAlignment="Top" FontSize="14"/>
 
     </Grid>
 </Window>

@@ -58,5 +58,10 @@ namespace ModBusServerConfigurator
 
             LabelVersion.ToolTip = "MajorVersion . MinorVersion . Build Number . Revision";
         }
+
+        private void LabelLinkRepository_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/fedeturco");
+        }
     }
 }

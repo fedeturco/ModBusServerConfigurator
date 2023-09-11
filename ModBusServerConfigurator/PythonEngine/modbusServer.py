@@ -50,7 +50,6 @@ except:
         exit()
 
 try:
-    from pymodbus.version import version
     from pymodbus.server import StartTcpServer
     from pymodbus.server import StartSerialServer
 
@@ -70,10 +69,7 @@ except:
         if(platform == "linux" or platform == "linux2"):
             print(os.popen("sudo pip3 install pymodbus").read())
 
-        from pymodbus.version import version
         from pymodbus.server import StartTcpServer
-        #from pymodbus.server import StartTlsServer
-        #from pymodbus.server import StartUdpServer
         from pymodbus.server import StartSerialServer
 
         from pymodbus.device import ModbusDeviceIdentification
@@ -219,7 +215,7 @@ if("modBus" in config):
 
             # Windows section
             else:
-                # Se non trovo l'indirizzo ip nella scheda ddi rete lo istanzio
+                # Se non trovo l'indirizzo ip nella scheda di rete proseguo al prossimo
                 if(ifconfig.find(modbusOBJ["ip_address"]) == -1):
                     print("Invalid IP Address")
                     continue
@@ -510,7 +506,6 @@ def runServerTcp(name, objectTcp):
         identity.VendorUrl = 'http://github.com/riptideio/pymodbus/'
         identity.ProductName = 'Pymodbus Server'
         identity.ModelName = 'Pymodbus Server'
-        identity.MajorMinorRevision = version.short()
 
         while(True):
             try:

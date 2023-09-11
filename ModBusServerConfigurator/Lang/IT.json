@@ -1,0 +1,191 @@
+{
+  "labels": {
+    "LabelSlavesTcp": "Slaves attivi sulla head selezionata:",
+    "LabelSlavesRtu": "Slaves attivi sulla head selezionata:",
+    "LabelSlavesProfiles": "Profili slaves disponibili (drag & drop):",
+    "LabelCurrentLanguage": "Lingua selezionata:",
+    "LabelLanguageSettings": "Lingua",
+    "LabelLogInfo1": "Max numero paragrafi buffer Terminal:",
+    "LabelLogInfo2": "Il log è gestito a praragrafi con numero di righe variabile da 1 a 10 a seconda della coda presente nella console quando viene fatto il dequeue.",
+    "LabelConfigGenerale": "Configurazione generale",
+    "LabelTimeoutPing": "Timeout ping raspberry [ms]:",
+    "LabelSettingsPortIpAddress": "Indirizzo IP:",
+    "LabelSettingsPort": "Porta:",
+    "LabelSettingsUsername": "Username:",
+    "LabelSettingsPassword": "Password:",
+    "LabelConfigRaspberry": "Configurazione specifica Raspberry:",
+    "LabelFileOperations": "Operazioni sui file di configurazione:",
+    "LabelProfileSLave": "Profilo slave:",
+    "LabelCoilsLen": {
+      "label": "Len:",
+      "toolTip": "Numero di coils istanziate sullo slave"
+    },
+    "LabelInputsLen": {
+      "label": "Len:",
+      "toolTip": "Numero di inputs istanziati sullo slave"
+    },
+    "LabelInputRegisterLen": {
+      "label": "Len:",
+      "toolTip": "Numero di input registers istanziati sullo slave"
+    },
+    "LabelHoldingRegisterLen": {
+      "label": "Len:",
+      "toolTip": "Numero di holding registers istanziati sullo slave"
+    },
+    "LabelIdModbusSlave": "ID ModBus Slave:"
+  },
+  "radioButtons": {
+    "RadioButtonWindows": {
+      "toolTip": "Esegui in locale sulla macchina host windows"
+    },
+    "RadioButtonRaspberry": {
+      "toolTip": "Esegui su una macchina linux target (in remoto via ssh)"
+    }
+  },
+  "checkBoxes": {
+    "CheckBoxSubscribeLog": {
+      "label": "Apri log nel terminale automaticamene con connect (tail -f /var/log/modbus.log) "
+    },
+    "CheckBoxAddAddressEth0": {
+      "label": "Aggiungi automaticamente indirizzi IP alla scheda eth0"
+    },
+    "CheckBoxDebug": {
+      "label": "Output di debug"
+    },
+    "CheckBoxOpenSeparateWindow": {
+      "label": "Esegui script in una finestra cmd separata",
+      "toolTip": "Esegue lo script in una finestra separata\n(su alcuni PC può dare problemi eseguire lo script all'interno della finestra).'"
+    },
+    "CheckBoxDisableAutoscroll": {
+      "label": "Disabilita Autoscroll"
+    },
+    "CheckBoxDisableRichTextBox": {
+      "label": "Disabilita grafica log (rimane visibile nella console)"
+    },
+    "CheckBoxSelectAllTcp": {
+      "label": "Select all",
+      "toolTip": "Attiva/disattiva tutte le head TCP"
+    },
+    "CheckBoxSelectAllRtu": {
+      "label": "Select all",
+      "toolTip": "Attiva/disattiva tutte le head RTU"
+    }
+  },
+  "buttons": {
+    "ButtonImportAllConfiguration": {
+      "toolTip": "Carica la configurazione da un file .json (sovrascrivendo quella attuale)"
+    },
+    "ButtonExportAllConfiguration": {
+      "toolTip": "Esporta tutta la configurazione attuale in un file .json"
+    },
+    "ButtonUploadToRasperry": {
+      "label": ">> Copia su Raspberry >>"
+    },
+    "ButtonDownloadFromRaspberry": {
+      "label": "<< Scarica da Raspberry <<"
+    },
+    "ButtonNewProfile": {
+      "label": "Nuovo profilo",
+      "toolTip": "Crea un nuovo profilo"
+    },
+    "ButtonRenameProfile": {
+      "label": "Rinomina profilo",
+      "toolTip": "Rinomina profilo selezionato"
+    },
+    "ButtonDuplicateProfile": {
+      "label": "Duplica profilo",
+      "toolTip": "Duplica profilo selezionato"
+    },
+    "ButtonImportProfile": {
+      "label": "Importa profilo",
+      "toolTip": "Importa profilo"
+    },
+    "ButtonExportProfile": {
+      "label": "Esporta profilo",
+      "toolTip": "Esporta profilo"
+    },
+    "ButtonDeleteProfile": {
+      "label": "Elimina profilo",
+      "toolTip": "Elimina profilo"
+    },
+    "ButtonStartLog": {
+      "label": "Start Log",
+      "toolTip": "Attiva log realtime"
+    },
+    "ButtonClearTerminal": {
+      "label": "Clear",
+      "toolTip": "Pulisci log"
+    },
+    "ButtonClearTerminalSsh": {
+      "label": "Clear",
+      "toolTip": "Pulisci log"
+    },
+    "ButtonStartWindowsThread": {
+      "toolTip": "Avvia il server ModBus (in automatico prima di avviarlo salva la configurazione)"
+    },
+    "ButtonStopWindowsThread": {
+      "toolTip": "Ferma il server ModBus"
+    },
+    "ButtonRestartWindowsThread": {
+      "toolTip": "Riavvia il server con le nuove modifiche (equivalente a Stop -> Save -> Start)"
+    },
+    "ButtonSaveWindows": {
+      "toolTip": "Salva configurazione corrente"
+    },
+    "ButtonConnectLinux": {
+      "toolTip": "Connetti via ssh"
+    },
+    "ButtonReadLinux": {
+      "toolTip": "Leggi configurazione"
+    },
+    "ButtonWriteLinux": {
+      "toolTip": "Scrivi configurazione"
+    },
+    "ButtonStartService": {
+      "toolTip": "Avvia servizio"
+    },
+    "ButtonStopService": {
+      "toolTip": "Ferma servizio"
+    },
+    "ButtonRestartService": {
+      "toolTip": "Riavvia servizio"
+    },
+    "ButtonPowerOffRaspberryConsole": {
+      "toolTip": "Spegni macchina linux"
+    }
+  },
+  "textBoxes": {
+    "TextBoxCoilsLen": {
+      "toolTip": "Numero di coils istanziate sullo slave"
+    },
+    "TextBoxInputsLen": {
+      "toolTip": "Numero di inputs istanziati sullo slave"
+    },
+    "TextBoxInputRegisterLen": {
+      "toolTip": "Numero di input registers istanziati sullo slave"
+    },
+    "TextBoxHoldingRegisterLen": {
+      "toolTip": "Numero di holding registers istanziati sullo slave"
+    },
+    "TextBoxDeviceId": {
+      "toolTip": "Inserire ID multipli separati da virgole"
+    }
+  },
+  "textBlocks": {
+  },
+  "comboBoxes": {
+    "ComboBoxLanguage": {
+      "toolTip": "Numero di registri istanziati sullo slave"
+    }
+  },
+  "pictureBoxes": {
+  },
+  "tabItems": {
+  },
+  "menuItems": {
+  },
+  "toolTips": {
+  },
+  "strings": {
+  }
+}
