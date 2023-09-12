@@ -175,7 +175,7 @@
   },
   "comboBoxes": {
     "ComboBoxLanguage": {
-      "toolTip": "Numero di registri istanziati sullo slave"
+      "toolTip": "Lingua selezionata"
     }
   },
   "pictureBoxes": {

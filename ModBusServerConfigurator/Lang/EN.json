@@ -1,0 +1,191 @@
+{
+  "labels": {
+    "LabelSlavesTcp": "Slaves active on selected head:",
+    "LabelSlavesRtu": "Slaves active on selected head:",
+    "LabelSlavesProfiles": "Available slave profiles (drag & drop):",
+    "LabelCurrentLanguage": "Selected language:",
+    "LabelLanguageSettings": "Language",
+    "LabelLogInfo1": "Max line paragraphs. Terminal:",
+    "LabelLogInfo2": "Log is appended from to 1 to 10 lines each time depending the queue length of the console.",
+    "LabelConfigGenerale": "General configuration",
+    "LabelTimeoutPing": "Timeout ping raspberry [ms]:",
+    "LabelSettingsPortIpAddress": "IP address:",
+    "LabelSettingsPort": "Port:",
+    "LabelSettingsUsername": "Username:",
+    "LabelSettingsPassword": "Password:",
+    "LabelConfigRaspberry": "Linux target config:",
+    "LabelFileOperations": "Config files operation:",
+    "LabelProfileSLave": "Slave profile:",
+    "LabelCoilsLen": {
+      "label": "Len:",
+      "toolTip": "Number of coils activated on slave"
+    },
+    "LabelInputsLen": {
+      "label": "Len:",
+      "toolTip": "Number of inputs activated on slave"
+    },
+    "LabelInputRegisterLen": {
+      "label": "Len:",
+      "toolTip": "Number of input registers activated on slave"
+    },
+    "LabelHoldingRegisterLen": {
+      "label": "Len:",
+      "toolTip": "Number of holding registers activated on slave"
+    },
+    "LabelIdModbusSlave": "Slave ModBus ID:"
+  },
+  "radioButtons": {
+    "RadioButtonWindows": {
+      "toolTip": "Run on local windows"
+    },
+    "RadioButtonRaspberry": {
+      "toolTip": "Run on linux target (remote via ssh)"
+    }
+  },
+  "checkBoxes": {
+    "CheckBoxSubscribeLog": {
+      "label": "Open log automatically with connect (tail -f /var/log/modbus.log) "
+    },
+    "CheckBoxAddAddressEth0": {
+      "label": "Add eth0 IP address auto"
+    },
+    "CheckBoxDebug": {
+      "label": "Debug output"
+    },
+    "CheckBoxOpenSeparateWindow": {
+      "label": "Run script in separate window",
+      "toolTip": "Run script in separate window\n(on some PCs run the script in the same window may encounter som troubles).'"
+    },
+    "CheckBoxDisableAutoscroll": {
+      "label": "Disable Autoscroll"
+    },
+    "CheckBoxDisableRichTextBox": {
+      "label": "Disable log graphic (still visible in console)"
+    },
+    "CheckBoxSelectAllTcp": {
+      "label": "Select all",
+      "toolTip": "Enable/disable all TCP heads"
+    },
+    "CheckBoxSelectAllRtu": {
+      "label": "Select all",
+      "toolTip": "Enable/disable all RTU heads"
+    }
+  },
+  "buttons": {
+    "ButtonImportAllConfiguration": {
+      "toolTip": "Load configuration from .json file (overwrites actual configuration)"
+    },
+    "ButtonExportAllConfiguration": {
+      "toolTip": "Export configuration to file .json"
+    },
+    "ButtonUploadToRasperry": {
+      "label": ">> Copy on Raspberry >>"
+    },
+    "ButtonDownloadFromRaspberry": {
+      "label": "<< Download from Raspberry <<"
+    },
+    "ButtonNewProfile": {
+      "label": "New profile",
+      "toolTip": "Create new profile"
+    },
+    "ButtonRenameProfile": {
+      "label": "Rename profile",
+      "toolTip": "Rename selected profile"
+    },
+    "ButtonDuplicateProfile": {
+      "label": "Duplicate profile",
+      "toolTip": "Copy actual profile to a new one"
+    },
+    "ButtonImportProfile": {
+      "label": "Import profile",
+      "toolTip": "Import profile"
+    },
+    "ButtonExportProfile": {
+      "label": "Export profile",
+      "toolTip": "Export profile"
+    },
+    "ButtonDeleteProfile": {
+      "label": "Delete profile",
+      "toolTip": "Delete profile"
+    },
+    "ButtonStartLog": {
+      "label": "Start Log",
+      "toolTip": "Activate log realtime"
+    },
+    "ButtonClearTerminal": {
+      "label": "Clear",
+      "toolTip": "Clear log"
+    },
+    "ButtonClearTerminalSsh": {
+      "label": "Clear",
+      "toolTip": "Clear log"
+    },
+    "ButtonStartWindowsThread": {
+      "toolTip": "Start Modbus server (automatically saves actual configuration bero starting the server)"
+    },
+    "ButtonStopWindowsThread": {
+      "toolTip": "Stop Modbus server"
+    },
+    "ButtonRestartWindowsThread": {
+      "toolTip": "Restart Modbus server (Stop -> Save -> Start)"
+    },
+    "ButtonSaveWindows": {
+      "toolTip": "Save actual configuration"
+    },
+    "ButtonConnectLinux": {
+      "toolTip": "Connect through ssh"
+    },
+    "ButtonReadLinux": {
+      "toolTip": "Read configuration"
+    },
+    "ButtonWriteLinux": {
+      "toolTip": "Write configuration"
+    },
+    "ButtonStartService": {
+      "toolTip": "Start service"
+    },
+    "ButtonStopService": {
+      "toolTip": "Stop service"
+    },
+    "ButtonRestartService": {
+      "toolTip": "Restart service"
+    },
+    "ButtonPowerOffRaspberryConsole": {
+      "toolTip": "Power Off target linux"
+    }
+  },
+  "textBoxes": {
+    "TextBoxCoilsLen": {
+      "toolTip": "Number of coils activated on slave"
+    },
+    "TextBoxInputsLen": {
+      "toolTip": "Number of inputs activated on slave"
+    },
+    "TextBoxInputRegisterLen": {
+      "toolTip": "Number of input registers activated on slave"
+    },
+    "TextBoxHoldingRegisterLen": {
+      "toolTip": "Number of holding registers activated on slave"
+    },
+    "TextBoxDeviceId": {
+      "toolTip": "Insert multiple IDs separated by commas ','"
+    }
+  },
+  "textBlocks": {
+  },
+  "comboBoxes": {
+    "ComboBoxLanguage": {
+      "toolTip": "Selected Language"
+    }
+  },
+  "pictureBoxes": {
+  },
+  "tabItems": {
+  },
+  "menuItems": {
+  },
+  "toolTips": {
+  },
+  "strings": {
+  }
+}
