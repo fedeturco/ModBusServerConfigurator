@@ -3,14 +3,10 @@
 
 ## Release
 
-### v1.5
-https://github.com/Fedex1515/ModBusServerConfigurator/releases/download/1.5/ModBusServerConfigurator_v1.5.zip
+### v1.6
+https://github.com/Fedex1515/ModBusServerConfigurator/releases/download/1.6/ModBusServerConfigurator_v1.6.zip
 
 A partire dalla versione 1.4 l'applicativo nella versione su raspberry è stato spostato da /home/pi/ModBusServer a /etc/ModBusServer.
-
-## Manuale
-
-TODO
 
 ## Installer raspberry
 
